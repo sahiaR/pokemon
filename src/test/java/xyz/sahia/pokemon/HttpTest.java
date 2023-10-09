@@ -12,11 +12,10 @@ public class HttpTest {
 
     @Test
     void http () throws Exception {
-
         // <1>
         try (var http = HttpClient
                 .newHttpClient()){
-            var request = HttpRequest.newBuilder(URI.create("https://www.adobe.com"))
+            var request = HttpRequest.newBuilder(URI.create("https://pokeapi.co/api/v2/pokemon/"))
                     .GET()
                     .build() ;
             var response = http.send( request, HttpResponse.BodyHandlers.ofString());
