@@ -19,21 +19,20 @@ public class PokemonApplication {
 
         List<Pokemon> pokemonList = toutLesPokemon.results();
 
-        System.out.println(pokemonList.get(0).nom());
-        System.out.println(pokemonList.get(0).url());
+        System.out.println("le nom du premier Pokemon est: "+  pokemonList.get(0).nom());
+        System.out.println(" son URL est: " + pokemonList.get(0).url());
 
         var pokemonNumero1= pokemonApiService.getApiResponse(pokemonList.get(0).url());
         var pokemonNumero1Record = mapper.readValue(pokemonNumero1, PokemonsDetails.class);
 
-        System.out.println(pokemonNumero1Record.abilities().get(0).ability().id());
-        System.out.println(pokemonNumero1Record.abilities().get(0).ability().name());
+        System.out.println(" l identifiant de la capacite numero 1 de ce pokemon :" + pokemonNumero1Record.abilities().get(0).ability().id());
+        System.out.println(" le nom de la capacite numero 1 de ce pokemon :"+ pokemonNumero1Record.abilities().get(0).ability().name());
 
         var capacite = pokemonApiService.
                 getApiResponse(pokemonNumero1Record.abilities().get(0).ability().url());
 
         var capaciteRecord = mapper.readValue(capacite, AbilityDetails.class);
-        System.out.println(capaciteRecord.name());
-        System.out.println(capaciteRecord.effets().get(0).effect());
+        System.out.println(" effet  de la capacite numero 1:"+ capaciteRecord.effets().get(0).effect());
         }
 
     }
